@@ -17,8 +17,11 @@ public class GigaChadRobot extends JuniorRobot
 	@Override	
 	public void run() {
 		setColors(green, green, black, black, black);
-		this.strategy = estratega.checkStatus(this);
-		strategy.run(this);
+		while(true) {
+			this.strategy = estratega.checkStatus(this);
+			System.out.println("chequeo estrategia");
+			strategy.run(this);
+		}
 	}
 
 

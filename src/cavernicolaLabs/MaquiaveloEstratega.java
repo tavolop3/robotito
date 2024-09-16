@@ -1,10 +1,10 @@
-package gargamelLabs;
+package cavernicolaLabs;
 import robocode.*;
 
 public class MaquiaveloEstratega implements Estratega {
 	private final static Estratega INSTANCE = new MaquiaveloEstratega();
 
-	static class DancerChadStrategy implements Strategy {
+	static class DancerStrategy implements Strategy {
 
 		@Override
 		public void run(JuniorRobot r) {
@@ -56,7 +56,7 @@ public class MaquiaveloEstratega implements Estratega {
 		
 	}
 	
-	static class DangerStrategy implements Strategy {
+	static class WallyStrategy implements Strategy {
 		
 		@Override
 	    public void run(JuniorRobot r) {	        
@@ -99,19 +99,19 @@ public class MaquiaveloEstratega implements Estratega {
 	public Strategy checkStatus(JuniorRobot r) {
 		if(r.energy > 80) {
 			System.out.println("danger1");
-			return new DangerStrategy();
+			return new WallyStrategy();
 		}
 		else if (r.energy > 60){
 			System.out.println("dancer");
-			return new DancerChadStrategy();
+			return new DancerStrategy();
 		}
 		else if (r.energy > 40){
 			System.out.println("danger2");
-			return new DangerStrategy();
+			return new WallyStrategy();
 		}
 		else {
 			System.out.println("dancer2");
-			return new DancerChadStrategy();
+			return new DancerStrategy();
 		}
 	}
 

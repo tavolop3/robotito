@@ -1,4 +1,4 @@
-package gargamelLabs;
+package cavernicolaLabs;
 import robocode.*;
 
 

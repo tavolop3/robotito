@@ -81,7 +81,7 @@ public class MaquiaveloEstratega implements Estratega {
 	    	if (r.energy > 50)
 	    		r.fire(3);
 	    	else {
-	    		r.fire(2);
+	    		r.fire(1);
 	    	}
 	    }
 
@@ -105,7 +105,7 @@ public class MaquiaveloEstratega implements Estratega {
 			System.out.println("dancer");
 			return new DancerChadStrategy();
 		}
-		else if (r.energy > 20){
+		else if (r.energy > 40){
 			System.out.println("danger2");
 			return new DangerStrategy();
 		}

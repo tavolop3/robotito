@@ -98,19 +98,15 @@ public class MaquiaveloEstratega implements Estratega {
 	@Override
 	public Strategy checkStatus(JuniorRobot r) {
 		if(r.energy > 80) {
-			System.out.println("danger1");
 			return new WallyStrategy();
 		}
 		else if (r.energy > 60){
-			System.out.println("dancer");
 			return new DancerStrategy();
 		}
 		else if (r.energy > 40){
-			System.out.println("danger2");
 			return new WallyStrategy();
 		}
 		else {
-			System.out.println("dancer2");
 			return new DancerStrategy();
 		}
 	}

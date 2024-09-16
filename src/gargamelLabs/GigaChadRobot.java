@@ -8,9 +8,7 @@ public class GigaChadRobot extends JuniorRobot
 	private Estratega estratega;
 	
 	public GigaChadRobot() {
-		super();
 		this.estratega = MaquiaveloEstratega.getInstance();
-
 		this.strategy = estratega.checkStatus(this);
 	}
 
@@ -19,7 +17,6 @@ public class GigaChadRobot extends JuniorRobot
 		setColors(green, green, black, black, black);
 		while(true) {
 			this.strategy = estratega.checkStatus(this);
-			System.out.println("chequeo estrategia");
 			strategy.run(this);
 		}
 	}

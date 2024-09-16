@@ -8,12 +8,11 @@ public class MaquiaveloEstratega implements Estratega {
 
 		@Override
 		public void run(JuniorRobot r) {
-			r.ahead(100);
 			r.turnGunRight(360); 
+			r.ahead(100);
 			r.back(100);
 			r.turnGunLeft(360);
 	        this.zigzagMove(r, 75, 45);
-	        r.turnGunRight(360);
 		}
 
 	    private void zigzagMove(JuniorRobot r, int distance, int angle) {
@@ -58,45 +57,37 @@ public class MaquiaveloEstratega implements Estratega {
 	}
 	
 	static class DangerStrategy implements Strategy {
-	    boolean peek;
-	    
+		
+		@Override
 	    public void run(JuniorRobot r) {	        
 	    	int h = r.fieldHeight;
 	    	int w = r.fieldWidth;
 	        int moveAmount = Math.max(w, h);
-	        peek = false;
-
-	        r.turnLeft(r.heading % 90);
+	        
+	        if (r.heading % 90 != 0) {
+				r.turnTo(0);
+				r.turnGunRight(90);
+			}
 	        r.ahead(moveAmount);
-	        peek = true;
-	        r.turnGunRight(90);
-	        r.turnRight(90);
-
-	        while (true) {
-	            peek = true;
-	            r.ahead(moveAmount);
-	            peek = false;
-	            r.turnRight(90);
-	        }
 	    }
 
-
+	    @Override
 	    public void onHitByBullet(JuniorRobot r) {
-//	        r.turnTo(r.hitByBulletAngle);
-//	        r.ahead(100);
+	    
 	    }
 
+	    @Override
 	    public void onScannedRobot(JuniorRobot r) {
-            r.fire(2);
-            if (peek) {
-        		r.turnGunRight(360); 
-            }
+	    	if (r.energy > 50)
+	    		r.fire(3);
+	    	else {
+	    		r.fire(2);
+	    	}
 	    }
 
 		@Override
 		public void onHitWall(JuniorRobot r) {
-//			r.back(20);
-//	        r.turnRight(90);
+			r.turnRight(90);
 		}
 	}
 	
@@ -106,12 +97,21 @@ public class MaquiaveloEstratega implements Estratega {
 	
 	@Override
 	public Strategy checkStatus(JuniorRobot r) {
-		if(r.energy < 50) {
+		if(r.energy > 80) {
+			System.out.println("danger1");
+			return new DangerStrategy();
+		}
+		else if (r.energy > 60){
 			System.out.println("dancer");
 			return new DancerChadStrategy();
-		} else {
-			System.out.println("danger");
+		}
+		else if (r.energy > 20){
+			System.out.println("danger2");
 			return new DangerStrategy();
+		}
+		else {
+			System.out.println("dancer2");
+			return new DancerChadStrategy();
 		}
 	}
 

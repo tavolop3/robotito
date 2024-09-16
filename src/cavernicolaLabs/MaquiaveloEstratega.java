@@ -3,9 +3,9 @@ import robocode.*;
 
 public class MaquiaveloEstratega implements Estratega {
 	private final static Estratega INSTANCE = new MaquiaveloEstratega();
-
+	
 	static class DancerStrategy implements Strategy {
-
+		
 		@Override
 		public void run(JuniorRobot r) {
 			r.turnGunRight(360); 
